@@ -1,8 +1,14 @@
-import { render, screen } from '@testing-library/react';
+import { mount } from "enzyme";
 import App from './App';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+describe('renders learn react link', () => {
+  let wrapper;
+
+  beforeEach(() => {
+    wrapper = mount(<App />);
+  });
+
+  test("should render", () => {
+    expect(wrapper.find(App)).toHaveLength(1);
+  })
 });
