@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, useCallback } from "react";
 import { Row, Button, Col, Divider } from "antd";
 import { Formik } from "formik";
 import { Form } from "formik-antd";
@@ -11,6 +11,13 @@ import { SkillsSection } from "./SkillsSection";
 export function EditProfilePage() {
   const [profileSaved, setProfileSaved] = useState(false);
   const { search } = useLocation();
+
+  const handleOnKeyDown = useCallback((event) => {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      return false;
+    }
+  }, []);
 
   let initialValues = useMemo(() => {
     let makeChanges = new URLSearchParams(search).get("makeChanges"),
@@ -45,7 +52,11 @@ export function EditProfilePage() {
             setProfileSaved(true);
           }}
           render={({ initialValues }) => (
-            <Form layout="vertical" initialValues={initialValues}>
+            <Form
+              layout="vertical"
+              initialValues={initialValues}
+              onKeyDown={handleOnKeyDown}
+            >
               <Divider plain>General</Divider>
               <GeneralSection />
               <Divider plain>Experience</Divider>
