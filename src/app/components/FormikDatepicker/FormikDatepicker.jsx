@@ -4,7 +4,13 @@ import { useFormikContext } from "formik";
 import moment from "moment";
 import PropTypes from "prop-types";
 
-export const FormikDatepicker = ({ name, rules, initialValue, ...props }) => {
+export const FormikDatepicker = ({
+  name,
+  rules,
+  initialValue,
+  label,
+  ...props
+}) => {
   const { setFieldValue } = useFormikContext();
 
   const handleOnChange = useCallback(
@@ -18,7 +24,7 @@ export const FormikDatepicker = ({ name, rules, initialValue, ...props }) => {
 
   return (
     <Form.Item
-      label="End month"
+      label={label}
       name={name}
       rules={rules}
       initialValue={initialValue}
@@ -32,4 +38,5 @@ FormikDatepicker.propTypes = {
   name: PropTypes.string.isRequired,
   rules: PropTypes.array,
   initialValue: PropTypes.instanceOf(moment),
+  label: PropTypes.string,
 };
