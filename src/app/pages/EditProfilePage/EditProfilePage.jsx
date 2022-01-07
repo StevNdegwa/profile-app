@@ -1,7 +1,7 @@
-import { useCallback, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { Row, Form, Button, Col, Divider } from "antd";
 import { Formik } from "formik";
-import { Link } from "react-router-dom";
+import { Link, Prompt, useLocation } from "react-router-dom";
 import { PageLayout } from "../../layout";
 import { ExperienceSection } from "./ExperienceSection";
 import { GeneralSection } from "./GeneralSection";
@@ -9,6 +9,7 @@ import { SkillsSection } from "./SkillsSection";
 
 export function EditProfilePage() {
   const [profileSaved, setProfileSaved] = useState(false);
+  const { search } = useLocation();
 
   const handleOnKeyDown = useCallback((event) => {
     if (event.keyCode === 13) {
@@ -17,24 +18,35 @@ export function EditProfilePage() {
     }
   }, []);
 
+  let initialValues = useMemo(() => {
+    let makeChanges = new URLSearchParams(search).get("makeChanges");
+    return makeChanges
+      ? JSON.parse(localStorage.getItem("PROFILE"))
+      : {
+          firstName: "",
+          lastName: "",
+          email: "",
+          tagLine: "",
+          experience: [{}],
+          skills: [],
+        };
+  }, [search]);
+
   return (
     <PageLayout title="Edit Profile">
+      <Prompt
+        when={!profileSaved}
+        message={"You have not saved your changes."}
+      />
       <Row justify="center">
         <Formik
-          initialValues={{
-            firstName: "",
-            secondName: "",
-            email: "",
-            tagLine: "",
-            experience: [{}],
-            skills: [],
-          }}
+          initialValues={initialValues}
           onSubmit={(values) => {
             localStorage.setItem("PROFILE", JSON.stringify(values));
             setProfileSaved(true);
           }}
         >
-          {({ handleSubmit }) => (
+          {({ handleSubmit, initialValues }) => (
             <Form
               name="editProfile"
               layout="vertical"
@@ -42,6 +54,7 @@ export function EditProfilePage() {
               onKeyDown={handleOnKeyDown}
               onSubmit={handleSubmit}
               component={"form"}
+              initialValues={initialValues}
             >
               <Divider plain>General</Divider>
               <GeneralSection />

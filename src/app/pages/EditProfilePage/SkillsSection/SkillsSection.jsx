@@ -3,27 +3,24 @@ import { Col, Form, Row, Tag, Input } from "antd";
 import { useFormikContext } from "formik";
 
 export function SkillsSection() {
-  const [skills, setSkills] = useState([]);
   const [skillInputValue, setSkillInputValue] = useState("");
-  const { setFieldValue } = useFormikContext();
+  const { setFieldValue, values } = useFormikContext();
 
   const handleAddSkill = useCallback(
     (event) => {
-      let newSkills = skills.concat(event.target.value);
-      setSkills(newSkills);
+      let newSkills = values.skills.concat(event.target.value);
       setFieldValue("skills", newSkills);
       setSkillInputValue("");
     },
-    [setFieldValue, skills]
+    [setFieldValue, values.skills]
   );
 
   const handleRemoveSkill = useCallback(
     (s) => {
-      let newSkills = skills.filter((skill) => skill !== s);
-      setSkills(newSkills);
+      let newSkills = values.skills.filter((skill) => skill !== s);
       setFieldValue("skills", newSkills);
     },
-    [setFieldValue, skills]
+    [setFieldValue, values.skills]
   );
 
   const handleSkillInputChange = (event) =>
@@ -40,7 +37,7 @@ export function SkillsSection() {
         />
       </Form.Item>
       <Row>
-        {skills.map((skill, index) => (
+        {values.skills.map((skill, index) => (
           <Tag key={index} closable onClose={() => handleRemoveSkill(skill)}>
             {skill}
           </Tag>

@@ -16,9 +16,9 @@ export function GeneralSection() {
         </Col>
         <Col>
           <FormikInput
-            label="Second Name"
-            name={"secondName"}
-            rules={[{ required: true, message: "Please add your second name" }]}
+            label="Last Name"
+            name={"lastName"}
+            rules={[{ required: true, message: "Please add your last name" }]}
             type={"text"}
             placeholder="Doe"
           />

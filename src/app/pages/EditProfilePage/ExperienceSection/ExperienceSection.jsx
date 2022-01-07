@@ -18,6 +18,7 @@ export function ExperienceSection() {
                   <ExperienceInput
                     id={index}
                     removeItem={() => remove(index)}
+                    experience={experience}
                   />
                 </Timeline.Item>
               ))}

@@ -2,9 +2,21 @@ import { Form, Row, Col, Tooltip, Button, Input, Checkbox } from "antd";
 import { CloseOutlined } from "@ant-design/icons";
 import { useFormikContext } from "formik";
 import PropTypes from "prop-types";
+import moment from "moment";
 import { FormikInput, FormikDatepicker } from "../../../../components";
 
-export function ExperienceInput({ id, removeItem }) {
+export function ExperienceInput({
+  id,
+  experience: {
+    jobTitle,
+    company,
+    isCurrentJob,
+    startMonth,
+    endMonth,
+    jobDesc,
+  },
+  removeItem,
+}) {
   const { setFieldValue, values } = useFormikContext();
 
   let descriptionWordCountRegex = /^(\S+\s*){0,300}$/;
@@ -24,6 +36,7 @@ export function ExperienceInput({ id, removeItem }) {
             rules={[{ required: true, message: "Please add the job title" }]}
             type={"text"}
             placeholder="Web developer"
+            initialValue={jobTitle}
           />
         </Col>
         <Col>
@@ -35,12 +48,14 @@ export function ExperienceInput({ id, removeItem }) {
             ]}
             type={"text"}
             placeholder="Good Life Co."
+            initialValue={company}
           />
         </Col>
       </Row>
       <Form.Item
         name={`experience[${id}].isCurrentJob`}
         valuePropName="checked"
+        initialValue={isCurrentJob}
       >
         <Checkbox
           checked={values.experience[id].isCurrentJob}
@@ -62,6 +77,7 @@ export function ExperienceInput({ id, removeItem }) {
             rules={[{ required: true, message: "Please add the date started" }]}
             picker="month"
             placeholder="Month Started"
+            initialValue={moment(startMonth)}
           />
         </Col>
         <Col>
@@ -77,6 +93,7 @@ export function ExperienceInput({ id, removeItem }) {
             picker="month"
             placeholder="Month Ended"
             disabled={values.experience[id].isCurrentJob}
+            initialValue={moment(endMonth)}
           />
         </Col>
       </Row>
@@ -89,6 +106,7 @@ export function ExperienceInput({ id, removeItem }) {
             message: "A maximum of 300 words is required",
           },
         ]}
+        initialValue={jobDesc}
       >
         <Input.TextArea
           placeholder="Job summary"
