@@ -65,11 +65,13 @@ export function ShowProfileData({ profileData }) {
                   <Typography.Text strong>at</Typography.Text>{" "}
                   <Typography.Text italic>
                     {experience.company},{" "}
-                    {moment(experience.startMonth).format("MMM-YYYY")}{" "}
+                    {moment(experience.startMonth).format("MMM - YYYY")}{" "}
                   </Typography.Text>
                   to{" "}
                   <Typography.Text italic>
-                    {moment(experience.endMonth).format("MMM-YYYY")}
+                    {experience.isCurrentJob
+                      ? "Present"
+                      : moment(experience.endMonth).format("MMM - YYYY")}
                   </Typography.Text>
                 </div>
               </div>

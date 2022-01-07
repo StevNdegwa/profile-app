@@ -32,7 +32,7 @@ export function GeneralSection() {
         placeholder="john.doe@email.com"
       />
       <FormikInput
-        label="Tag line"
+        label="Tagline"
         name={"tagLine"}
         rules={[{ required: true, message: "Please add a tagline" }]}
         type={"text"}
