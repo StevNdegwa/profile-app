@@ -12,7 +12,7 @@
 
 ### Challenges faced:
 
-- Difficulty using Formik with Antd Form, they have close to similar features. I had to choose which features to use and which to leave.
+- Creating a great UI in a short period of time
 
 ### What I'd have done differently if I had more time
 
