@@ -1,5 +1,5 @@
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
-import { HomePage, EditProfilePage } from "./pages";
+import { HomePage, EditProfilePage, ViewProfilePage } from "./pages";
 
 export default function App() {
   return (
@@ -9,7 +9,7 @@ export default function App() {
           <EditProfilePage />
         </Route>
         <Route path="/view-profile">
-          <div>View profile</div>
+          <ViewProfilePage />
         </Route>
         <Route path="/">
           <HomePage />
