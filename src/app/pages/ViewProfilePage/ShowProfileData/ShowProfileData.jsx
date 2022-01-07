@@ -18,22 +18,26 @@ const { Panel } = Collapse;
 export function ShowProfileData({ profileData }) {
   return (
     <>
-      <Row gutter={20} align="middle">
+      <Row align="middle" justify="space-between">
         <Col>
-          <Avatar icon={<UserOutlined />} size={64} />
-        </Col>
-        <Col>
-          <Row>
-            <Typography.Title level={3} style={{ marginBottom: "0" }}>
-              {profileData.firstName} {profileData.lastName}
-            </Typography.Title>
-          </Row>
-          <Row gutter={5} align="middle">
+          <Row gutter={20}>
             <Col>
-              <MailOutlined />
+              <Avatar icon={<UserOutlined />} size={64} />
             </Col>
             <Col>
-              <Typography.Text italic>{profileData.email}</Typography.Text>
+              <Row>
+                <Typography.Title level={3} style={{ marginBottom: "0" }}>
+                  {profileData.firstName} {profileData.lastName}
+                </Typography.Title>
+              </Row>
+              <Row gutter={5} align="middle">
+                <Col>
+                  <MailOutlined />
+                </Col>
+                <Col>
+                  <Typography.Text italic>{profileData.email}</Typography.Text>
+                </Col>
+              </Row>
             </Col>
           </Row>
         </Col>

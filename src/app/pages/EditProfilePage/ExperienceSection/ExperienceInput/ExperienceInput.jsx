@@ -103,9 +103,6 @@ export function ExperienceInput({
       >
         <Input.TextArea
           placeholder="Job summary"
-          readOnly={
-            !descriptionWordCountRegex.test(values.experience[id].jobDesc)
-          }
         />
       </Form.Item>
     </>
