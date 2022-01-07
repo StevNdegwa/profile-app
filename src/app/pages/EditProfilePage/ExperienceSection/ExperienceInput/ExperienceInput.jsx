@@ -19,7 +19,7 @@ export function ExperienceInput({
 }) {
   const { setFieldValue, values } = useFormikContext();
 
-  let descriptionWordCountRegex = /^(\S+\s*){0,300}$/;
+  let descriptionWordCountRegex = /^\s*(\S+\s*){0,300}$/;
 
   return (
     <>
