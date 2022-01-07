@@ -2,7 +2,7 @@ import { useCallback, useMemo, useState } from "react";
 import { Row, Form, Button, Col, Divider } from "antd";
 import { Formik } from "formik";
 import { Link, Prompt, useLocation } from "react-router-dom";
-import { PageLayout } from "../../layout";
+import { PageLayout } from "../../layouts";
 import { ExperienceSection } from "./ExperienceSection";
 import { GeneralSection } from "./GeneralSection";
 import { SkillsSection } from "./SkillsSection";

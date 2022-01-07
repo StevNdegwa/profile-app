@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Row, Col } from "antd";
-import { PageLayout } from "../../layout";
+import { PageLayout } from "../../layouts";
 import { ShowProfileData } from "./ShowProfileData";
 import { NoProfileData } from "./NoProfileData";
 
