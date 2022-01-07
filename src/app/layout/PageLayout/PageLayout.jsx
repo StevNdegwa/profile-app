@@ -1,6 +1,6 @@
 import { Layout, Col, Typography, Row, Button } from "antd";
-import { StepBackwardOutlined } from "@ant-design/icons";
-import { useHistory } from "react-router-dom";
+import { StepBackwardOutlined, HomeOutlined } from "@ant-design/icons";
+import { useHistory, Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 const { Header, Content, Footer } = Layout;
@@ -8,9 +8,18 @@ const { Header, Content, Footer } = Layout;
 export function PageLayout({ children, title }) {
   const history = useHistory();
   return (
-    <Layout style={{ maxHeight: "100vh" }}>
+    <Layout style={{ height: "100vh" }}>
       <Header>
         <Row align="middle" gutter={20}>
+          <Col>
+            <Link to="/">
+              <Button
+                style={{ color: "white" }}
+                icon={<HomeOutlined />}
+                type="ghost"
+              />
+            </Link>
+          </Col>
           <Col>
             <Button
               style={{ color: "white" }}
