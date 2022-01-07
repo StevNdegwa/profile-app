@@ -1,9 +1,10 @@
 import { useCallback } from "react";
 import { Form, DatePicker } from "antd";
 import { useFormikContext } from "formik";
+import moment from "moment";
 import PropTypes from "prop-types";
 
-export const FormikDatepicker = ({ name, rules, ...props }) => {
+export const FormikDatepicker = ({ name, rules, initialValue, ...props }) => {
   const { setFieldValue } = useFormikContext();
 
   const handleOnChange = useCallback(
@@ -16,7 +17,12 @@ export const FormikDatepicker = ({ name, rules, ...props }) => {
   );
 
   return (
-    <Form.Item label="End month" name={name} rules={rules}>
+    <Form.Item
+      label="End month"
+      name={name}
+      rules={rules}
+      initialValue={initialValue}
+    >
       <DatePicker {...props} onChange={handleOnChange} />
     </Form.Item>
   );
@@ -25,4 +31,5 @@ export const FormikDatepicker = ({ name, rules, ...props }) => {
 FormikDatepicker.propTypes = {
   name: PropTypes.string.isRequired,
   rules: PropTypes.array,
+  initialValue: PropTypes.instanceOf(moment),
 };

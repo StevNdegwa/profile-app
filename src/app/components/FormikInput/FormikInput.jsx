@@ -4,7 +4,7 @@ import { useFormikContext } from "formik";
 import PropTypes from "prop-types";
 
 export const FormikInput = forwardRef(
-  ({ name, rules, label, ...props }, ref) => {
+  ({ name, rules, label, initialValue, ...props }, ref) => {
     const { setFieldValue } = useFormikContext();
 
     const handleOnChange = useCallback(
@@ -15,7 +15,12 @@ export const FormikInput = forwardRef(
     );
 
     return (
-      <Form.Item rules={rules} name={name} label={label}>
+      <Form.Item
+        rules={rules}
+        name={name}
+        label={label}
+        initialValue={initialValue}
+      >
         <Input ref={ref} {...props} onChange={handleOnChange} />
       </Form.Item>
     );
@@ -26,4 +31,5 @@ FormikInput.propTypes = {
   name: PropTypes.oneOfType([PropTypes.string, PropTypes.array]).isRequired,
   label: PropTypes.string,
   rules: PropTypes.array,
+  initialValue: PropTypes.string,
 };
