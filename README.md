@@ -8,15 +8,17 @@
   - Single responsibility principle
   - Memoization
   - DRY - Don't repeat yourself
-- As the app grew, the componets changed, added more props, and broke down some
+- As the application grew, the componets changed, added more props, and broke down some
 
 ### Challenges faced:
 
-- Difficulty using Formik with Antd Form, the have close to similar features. I had to choose which features to use and which to leave.
+- Difficulty using Formik with Antd Form, they have close to similar features. I had to choose which features to use and which to leave.
 
 ### What I'd have done differently if I had more time
 
 - Prioritise unit tests
+- Improve data validation for the form
+- Add custom styles to make the UI great
 
 ### How to run the application locally
 
