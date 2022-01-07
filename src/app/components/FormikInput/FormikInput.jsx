@@ -1,19 +1,10 @@
-import { forwardRef, useCallback } from "react";
-import { Input, Form } from "antd";
-import { useFormikContext } from "formik";
+import { forwardRef } from "react";
+import { Form } from "antd";
+import { Input } from "formik-antd";
 import PropTypes from "prop-types";
 
 export const FormikInput = forwardRef(
   ({ name, rules, label, initialValue, ...props }, ref) => {
-    const { setFieldValue } = useFormikContext();
-
-    const handleOnChange = useCallback(
-      (event) => {
-        setFieldValue(name, event.target.value);
-      },
-      [name, setFieldValue]
-    );
-
     return (
       <Form.Item
         rules={rules}
@@ -21,7 +12,7 @@ export const FormikInput = forwardRef(
         label={label}
         initialValue={initialValue}
       >
-        <Input ref={ref} {...props} onChange={handleOnChange} />
+        <Input ref={ref} {...props} />
       </Form.Item>
     );
   }

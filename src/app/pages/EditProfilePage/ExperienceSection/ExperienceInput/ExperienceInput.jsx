@@ -1,6 +1,7 @@
-import { Form, Row, Col, Tooltip, Button, Input, Checkbox } from "antd";
+import { Form, Row, Col, Tooltip, Button } from "antd";
 import { CloseOutlined } from "@ant-design/icons";
 import { useFormikContext } from "formik";
+import { Checkbox, Input } from "formik-antd";
 import PropTypes from "prop-types";
 import moment from "moment";
 import { FormikInput, FormikDatepicker } from "../../../../components";
@@ -17,7 +18,7 @@ export function ExperienceInput({
   },
   removeItem,
 }) {
-  const { setFieldValue, values } = useFormikContext();
+  const { values } = useFormikContext();
 
   let descriptionWordCountRegex = /^\s*(\S+\s*){0,300}$/;
 
@@ -57,15 +58,7 @@ export function ExperienceInput({
         valuePropName="checked"
         initialValue={isCurrentJob}
       >
-        <Checkbox
-          checked={values.experience[id].isCurrentJob}
-          onChange={(event) =>
-            setFieldValue(
-              `experience[${id}].isCurrentJob`,
-              event.target.checked
-            )
-          }
-        >
+        <Checkbox name={`experience[${id}].isCurrentJob`}>
           Currently working here
         </Checkbox>
       </Form.Item>
@@ -110,9 +103,6 @@ export function ExperienceInput({
       >
         <Input.TextArea
           placeholder="Job summary"
-          onChange={(event) =>
-            setFieldValue(`experience[${id}].jobDesc`, event.target.value)
-          }
           readOnly={
             !descriptionWordCountRegex.test(values.experience[id].jobDesc)
           }

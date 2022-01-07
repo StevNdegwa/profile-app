@@ -1,6 +1,5 @@
-import { useCallback } from "react";
-import { Form, DatePicker } from "antd";
-import { useFormikContext } from "formik";
+import { Form } from "antd";
+import { DatePicker } from "formik-antd";
 import moment from "moment";
 import PropTypes from "prop-types";
 
@@ -11,17 +10,6 @@ export const FormikDatepicker = ({
   label,
   ...props
 }) => {
-  const { setFieldValue } = useFormikContext();
-
-  const handleOnChange = useCallback(
-    (value) => {
-      if (value) {
-        setFieldValue(name, value.toDate());
-      }
-    },
-    [name, setFieldValue]
-  );
-
   return (
     <Form.Item
       label={label}
@@ -29,7 +17,7 @@ export const FormikDatepicker = ({
       rules={rules}
       initialValue={initialValue}
     >
-      <DatePicker {...props} onChange={handleOnChange} />
+      <DatePicker {...props} />
     </Form.Item>
   );
 };
