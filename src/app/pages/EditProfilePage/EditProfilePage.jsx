@@ -19,17 +19,22 @@ export function EditProfilePage() {
   }, []);
 
   let initialValues = useMemo(() => {
-    let makeChanges = new URLSearchParams(search).get("makeChanges");
-    return makeChanges
-      ? JSON.parse(localStorage.getItem("PROFILE"))
-      : {
-          firstName: "",
-          lastName: "",
-          email: "",
-          tagLine: "",
-          experience: [{}],
-          skills: [],
-        };
+    let makeChanges = new URLSearchParams(search).get("makeChanges"),
+      initialValues = {
+        firstName: "",
+        lastName: "",
+        email: "",
+        tagLine: "",
+        experience: [{}],
+        skills: [],
+      };
+    if (makeChanges) {
+      let profileData = localStorage.getItem("PROFILE");
+      if (profileData) {
+        initialValues = JSON.parse(profileData);
+      }
+    }
+    return initialValues;
   }, [search]);
 
   return (
